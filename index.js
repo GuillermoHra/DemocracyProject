@@ -1,8 +1,9 @@
 const express = require('express')
 
-//require('./db/mongoose')
+require('./db/mongoose')
 const User = require('./db/models/user')
 const Proposal = require('./db/models/proposal')
+const Vote = require('./db/models/vote')
 
 const app = express()
 
