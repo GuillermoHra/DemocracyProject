@@ -78,12 +78,10 @@ app.post('/proposals', function(req, res) {
     })
 })
 
-app.post('/proposalsVote/:id', function(req, res) { // ?
-    const _idUser = req.params.idUser
-    const _decision = req.params.decision
-    const proposal = new Proposal(req.body)
-    proposal.save().then(function() {
-        return res.send(proposal)
+app.post('/votes', function(req, res) { // update proposal count ?
+    const vote = new Vote(req.body)
+    vote.save().then(function() {
+        return res.send(vote)
     }).catch(function(error) {
         return res.status(400).send(error)
     })
@@ -112,9 +110,9 @@ app.get('/proposals/:id', function(req, res) {
     })
 })
 
-app.get('/proposalsCategory/:category', function(req, res) {
+app.get('/proposalsByCategory/:category', function(req, res) {
     const _category = req.params.category
-    Proposal.find(_category).then(function(proposal) {
+    Proposal.find({category: _category}).then(function(proposal) {
         if(!proposal){
             return res.status(404).send()
         }
@@ -124,25 +122,37 @@ app.get('/proposalsCategory/:category', function(req, res) {
     })
 })
 
-app.get('/proposalsUser/:idUser', function(req, res) { // ?
+app.get('/proposalsByCitizen/:idUser', function(req, res) { 
     const _id = req.params.idUser
-    Proposal.findById(_id).then(function(proposal) {
-        if(!proposal){
+    Vote.find({id_user: _id}).then(function(vote) {
+        if(!vote){
             return res.status(404).send()
         }
-        return res.send(proposal)
+        return res.send(vote) // send only id_proposal and then proposal information
     }).catch(function(error) {
         return res.status(500).send(error)
     })
 })
 
-app.get('/proposalResults/:id', function(req, res) {
-    const _id = req.params.id
-    Proposal.findById(_id).then(function(proposal) {
+app.get('/proposalsByLegislator/:idUser', function(req, res) { 
+    const _id = req.params.idUser
+    Proposal.find({id_user: _id}).then(function(proposal) {
         if(!proposal){
             return res.status(404).send()
         }
-        return res.send(proposal)
+        return res.send(proposal) // send only id_proposal and then proposal information
+    }).catch(function(error) {
+        return res.status(500).send(error)
+    })
+})
+
+app.get('/proposalResults/:id', function(req, res) { // id proposal
+    const _id = req.params.id
+    Vote.find({id_proposal: _id}).then(function(vote) {
+        if(!vote){
+            return res.status(404).send()
+        }
+        return res.send(vote) // send only results
     }).catch(function(error) {
         return res.status(500).send(error)
     })
@@ -160,13 +170,13 @@ app.patch('/proposals/:id', function(req, res) {
     })
 })
 
-app.patch('/proposalsVote/:id', function(req, res) { // update just decision
+app.patch('/votes/:id', function(req, res) { // id proposal, update decision
     const _id = req.params.id
-    Proposal.findByIdAndUpdate(_id, req.body).then(function(proposal) {
-        if(!proposal){
+    Vote.findByIdAndUpdate({_id}, req.body).then(function(vote) {
+        if(!vote){
             return res.status(404).send()
         }
-        return res.send(proposal)
+        return res.send(vote)
     }).catch(function(error) {
         return res.status(500).send(error)
     })

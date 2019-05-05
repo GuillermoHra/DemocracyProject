@@ -2,11 +2,11 @@ const mongoose = require('mongoose')
 
 const Vote = mongoose.model('Vote', {
     id_user: {
-        type: Number,
+        type: mongoose.Schema.Types.ObjectId,
         required: true
     },
     id_proposal: {
-        type: Number,
+        type: mongoose.Schema.Types.ObjectId,
         required: true
     },
     value: {

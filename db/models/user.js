@@ -5,6 +5,10 @@ const User = mongoose.model('User', {
         type: Number,
         required: true
     },
+    userType: {
+        type: String, // citizen or legislator
+        required: true
+    },
     name: {
         type: String,
         required: true

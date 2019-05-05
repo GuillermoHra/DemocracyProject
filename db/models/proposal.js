@@ -5,6 +5,10 @@ const Proposal = mongoose.model('Proposal', {
         type: Number,
         required: true
     },
+    id_user: { // legislator user id
+        type: mongoose.Schema.Types.ObjectId,
+        required: true
+    },
     name: {
         type: String,
         required: true
@@ -19,14 +23,14 @@ const Proposal = mongoose.model('Proposal', {
     },
     favor: {
         type: Number,
-        required: true
+        required: false
     },
     against: {
         type: Number,
-        required: true
+        required: false
     },
     date: {
-        type: Date,
+        type: Date, // month-day-year
         required: true
     }
 })
