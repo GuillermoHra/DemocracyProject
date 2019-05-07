@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "/index.js"
+    "start": "/src/index.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/GuillermoHra/DemocracyProject#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.16.4",
     "mongoose": "^5.5.5"
   }

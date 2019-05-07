@@ -1,16 +1,24 @@
+// TODO:
+// 1 - review models, add email, password
+// 2 - send only relevant information from requests
 const express = require('express')
-
 require('./db/mongoose')
-const User = require('./db/models/user')
-const Proposal = require('./db/models/proposal')
-const Vote = require('./db/models/vote')
+var cors = require('cors');
 
 const app = express()
-
 const port = process.env.PORT || 3000
 
-app.use(express.json()) // parses to json
+const router = require('./routes')
 
+app.use(express.json()) // parses to json
+app.use(router)
+app.use(cors())
+
+app.listen(port, function() {
+    console.log('Server up and running on port ' + port)
+})
+
+/*
 // ---------------User routes---------------
 app.post('/users', function(req, res) {
     const user = new User(req.body)
@@ -73,15 +81,6 @@ app.post('/proposals', function(req, res) {
     const proposal = new Proposal(req.body)
     proposal.save().then(function() {
         return res.send(proposal)
-    }).catch(function(error) {
-        return res.status(400).send(error)
-    })
-})
-
-app.post('/votes', function(req, res) { // update proposal count ?
-    const vote = new Vote(req.body)
-    vote.save().then(function() {
-        return res.send(vote)
     }).catch(function(error) {
         return res.status(400).send(error)
     })
@@ -170,18 +169,6 @@ app.patch('/proposals/:id', function(req, res) {
     })
 })
 
-app.patch('/votes/:id', function(req, res) { // id proposal, update decision
-    const _id = req.params.id
-    Vote.findByIdAndUpdate({_id}, req.body).then(function(vote) {
-        if(!vote){
-            return res.status(404).send()
-        }
-        return res.send(vote)
-    }).catch(function(error) {
-        return res.status(500).send(error)
-    })
-})
-
 app.delete('/proposals/:id', function(req, res) {
     const _id = req.params.id
     Proposal.findByIdAndDelete(_id, req.body).then(function(proposal) {
@@ -194,6 +181,24 @@ app.delete('/proposals/:id', function(req, res) {
     })  
 })
 
-app.listen(port, function() {
-    console.log('Server up and running on port ' + port)
+app.post('/votes', function(req, res) { // update proposal count ?
+    const vote = new Vote(req.body)
+    vote.save().then(function() {
+        return res.send(vote)
+    }).catch(function(error) {
+        return res.status(400).send(error)
+    })
 })
+
+app.patch('/votes/:id', function(req, res) { // id proposal, update decision
+    const _id = req.params.id
+    Vote.findByIdAndUpdate({_id}, req.body).then(function(vote) {
+        if(!vote){
+            return res.status(404).send()
+        }
+        return res.send(vote)
+    }).catch(function(error) {
+        return res.status(500).send(error)
+    })
+})
+*/
