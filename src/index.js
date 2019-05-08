@@ -1,6 +1,9 @@
 // TODO:
-// 1 - review models, add email, password
-// 2 - send only relevant information from requests
+// 1 - send only relevant information from requests
+// 2 - add auth
+// 3 - personalize error messages
+
+
 const express = require('express')
 require('./db/mongoose')
 var cors = require('cors');
@@ -17,6 +20,9 @@ app.use(cors())
 app.listen(port, function() {
     console.log('Server up and running on port ' + port)
 })
+ 
+// validación de tipo de usuario: front o back?
+
 
 /*
 // ---------------User routes---------------
