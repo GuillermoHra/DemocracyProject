@@ -2,10 +2,6 @@ const mongoose = require('mongoose')
 const validator = require('validator')
 
 const proposalSchema = new mongoose.Schema({
-    //id_user: { // legislator user id
-      //  type: mongoose.Schema.Types.ObjectId,
-        //required: true
-    //},
     name: {
         type: String,
         required: true
@@ -20,19 +16,28 @@ const proposalSchema = new mongoose.Schema({
     },
     favor: {
         type: Number,
-        required: false
+        default: 0
     },
     against: {
         type: Number,
-        required: false
+        default: 0
+    },
+    decision: {
+        type: Number,
+        default: -1
     },
     date: {
         type: Date, // month-day-year
         required: true
     },
-    by: {
+    createdBy: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
+        ref: 'User'
+    },
+    votedBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: false,
         ref: 'User'
     }
 })

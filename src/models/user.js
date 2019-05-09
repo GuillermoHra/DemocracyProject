@@ -47,10 +47,16 @@ const userSchema = new mongoose.Schema({
     }
 })
 
-userSchema.virtual('proposals', {
+userSchema.virtual('proposalsCreated', {
     ref: 'Proposal',
     localField: '_id',
-    foreignField: 'by'
+    foreignField: 'createdBy'
+})
+
+userSchema.virtual('proposalsVoted', {
+  ref: 'Proposal',
+  localField: '_id',
+  foreignField: 'votedBy'
 })
 
 userSchema.methods.toJSON = function() {

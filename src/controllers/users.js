@@ -9,7 +9,7 @@ const createUser = function(req, res) {
     })
 }
 
-const getUsers = function(req, res) { // remove it?
+const getUsers = function(req, res) { // not used
     User.find({}).then(function(user) {
         if(!user){
             return res.status(404).send()
@@ -20,28 +20,20 @@ const getUsers = function(req, res) { // remove it?
     })
 }
 
-const getUser = function(req, res) {
-    /*
-    const _id = req.params.id
-    User.findById(_id).then(function(user) {
-        if(!user){
-            return res.status(404).send()
-        }
+const getUserL = function(req, res) {
+    User.findById(req.user._id).populate('proposalsCreated').exec(function(error, user) {
         return res.send(user)
-    }).catch(function(error) {
-        return res.status(500).send(error)
     })
-    */
-    User.findById(req.user._id).populate('proposals').exec(function(error, user) {
-        // req.user.populate('todos').exec(function(error, user) {  
-        // user ya tiene la info de req.user y req.user.todos
+}
+
+const getUserC = function(req, res) {
+    User.findById(req.user._id).populate('proposalsVoted').exec(function(error, user) {
         return res.send(user)
     })
 }
 
 const updateUser = function(req, res) {
-    const _id = req.params.id
-    User.findByIdAndUpdate(_id, req.body).then(function(user) {
+    User.findByIdAndUpdate(req.user._id, req.body).then(function(user) {
         if(!user){
             return res.status(404).send()
         }
@@ -52,8 +44,7 @@ const updateUser = function(req, res) {
 }
 
 const deleteUser = function(req, res) {
-    const _id = req.params.id
-    User.findByIdAndDelete(_id, req.body).then(function(user) {
+    User.findByIdAndDelete(req.user._id, req.body).then(function(user) {
         if(!user){
             return res.status(404).send()
         }
@@ -86,34 +77,28 @@ const logout = function(req, res) {
     })
 }
 
-const getProposalsByCitizen = function(req, res) {
-    /*
-    const _id = req.params.idUser
-    Vote.find({id_user: _id}).then(function(vote) {
-        if(!vote){
-            return res.status(404).send()
-        }
-        return res.send(vote) // send only id_proposal and then proposal information
-    }).catch(function(error) {
-        return res.status(500).send(error)
+const getProposalsByLegislator = function(req, res) {
+    User.findById(req.user._id).populate('proposalsCreated').exec(function(error, user) {
+        return res.send(user.proposalsCreated)
     })
-    */
+}
 
-    User.findById(req.user._id).populate('proposals').exec(function(error, user) {
-        // req.user.populate('todos').exec(function(error, user) {  
-        // user ya tiene la info de req.user y req.user.todos
-        return res.send(user.proposals)
+const getProposalsByCitizen = function(req, res) {
+    User.findById(req.user._id).populate('proposalsVoted').exec(function(error, user) {
+        return res.send(user.proposalsVoted)
     })
 }
 
 module.exports = {
     createUser : createUser,
     getUsers : getUsers,
-    getUser: getUser,
+    getUserL: getUserL,
+    getUserC: getUserC,
     updateUser : updateUser,
     deleteUser : deleteUser,
     login: login,
     logout: logout,
+    getProposalsByLegislator: getProposalsByLegislator,
     getProposalsByCitizen: getProposalsByCitizen
   }
   
