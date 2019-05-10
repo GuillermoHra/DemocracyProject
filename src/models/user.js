@@ -14,7 +14,12 @@ const userSchema = new mongoose.Schema({
     },
     ine_id: {
         type: String,
-        required: true
+        required: true,
+        validate(value) {
+          if(!validator.isAlphanumeric(value)) {
+            throw new Error('Enter a valid INE ID (alphanumeric)')
+          }
+        }
     },
     email: {
         type: String,
@@ -22,7 +27,7 @@ const userSchema = new mongoose.Schema({
         unique: true,
         validate(value) {
           if(!validator.isEmail(value)) {
-            throw new Error('Email invalido')
+            throw new Error('Enter a valid email')
           }
         }
     },

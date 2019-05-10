@@ -180,13 +180,9 @@ const updateVote = function(req, res) { // not used
     }
 
     Proposal.findById(_idProposal).then(function(proposal){
-
-
         if(!proposal){
             return res.status(404).send()
         }
-
-
 
         if(proposal.decision == -1){
             return res.status(400).send({
@@ -221,8 +217,6 @@ const updateVote = function(req, res) { // not used
                 return res.status(500).send(error)
             })
         }
-
-
     }).catch(function(error){
         return res.status(500).send(error)
     })

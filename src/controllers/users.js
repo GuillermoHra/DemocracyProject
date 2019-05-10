@@ -9,17 +9,6 @@ const createUser = function(req, res) {
     })
 }
 
-const getUsers = function(req, res) { // not used
-    User.find({}).then(function(user) {
-        if(!user){
-            return res.status(404).send()
-        }
-        return res.send(user)
-    }).catch(function(error) {
-        return res.status(500).send(error)
-    })
-}
-
 const getUserL = function(req, res) {
     User.findById(req.user._id).populate('proposalsCreated').exec(function(error, user) {
         return res.send(user)
@@ -34,7 +23,7 @@ const getUserC = function(req, res) {
 
 const updateUser = function(req, res) {
     const updates = Object.keys(req.body)
-    const allowedUpdates = ['name', 'ine_id']
+    const allowedUpdates = ['name', 'email', 'password','ine_id']
     const isValidUpdate = updates.every((update) => allowedUpdates.includes(update))
 
     if( !isValidUpdate ) {
@@ -99,6 +88,20 @@ const getProposalsByCitizen = function(req, res) {
     })
 }
 
+// ----------------------------------------------------------------------------------
+// ------------------------------ deprecated functions ------------------------------
+// ----------------------------------------------------------------------------------
+const getUsers = function(req, res) { // not used
+    User.find({}).then(function(user) {
+        if(!user){
+            return res.status(404).send()
+        }
+        return res.send(user)
+    }).catch(function(error) {
+        return res.status(500).send(error)
+    })
+}
+
 module.exports = {
     createUser : createUser,
     getUsers : getUsers,
@@ -110,5 +113,5 @@ module.exports = {
     logout: logout,
     getProposalsByLegislator: getProposalsByLegislator,
     getProposalsByCitizen: getProposalsByCitizen
-  }
+}
   

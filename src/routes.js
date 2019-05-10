@@ -8,18 +8,18 @@ const cors = require('cors')
 router.all('*', cors())
 
 router.post('/users', users.createUser) // signup
+router.post('/users/login', users.login) // legislator and citizen
 router.get('/userLegislator', auth, users.getUserL) // legislator
 router.get('/userCitizen', auth, users.getUserC) // citizen
 router.patch('/users', auth, users.updateUser) // legislator and citizen
 router.delete('/users', auth, users.deleteUser) // legislator and citizen
-router.post('/users/login', users.login) // legislator and citizen
-router.post('/users/logout', auth, users.logout) // legislator and citizen
 router.get('/proposalsByCitizen', auth, users.getProposalsByCitizen) // citizen front: getProposalById and display info
 router.get('/proposalsByLegislator', auth, users.getProposalsByLegislator) // legislator
+router.post('/users/logout', auth, users.logout) // legislator and citizen
 
 router.post('/proposals', auth, proposals.createProposal) // legislator
 router.get('/proposals', auth, proposals.getProposals) // legislator and citizen
-router.get('/proposals/:id', auth, proposals.getProposalById) // legislator and citizen 
+router.get('/proposals/:id', auth, proposals.getProposalById) // legislator and citizen (mainly for use in /proposalsByCitizen)
 router.get('/proposalsByCategory/:category', auth, proposals.getProposalsByCategory) // legislator and citizen
 router.patch('/proposals/:id', auth, proposals.updateProposal) // legislator
 router.delete('/proposals/:id', auth, proposals.deleteProposal) // legislator

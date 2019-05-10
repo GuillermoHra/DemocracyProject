@@ -5,12 +5,10 @@ const voteSchema = new mongoose.Schema({
     proposalId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true
-        //ref: 'Proposal'
     },
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true
-        //ref: 'User'
     },
     decision: {
         type: Number,
