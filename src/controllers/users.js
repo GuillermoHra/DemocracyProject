@@ -33,6 +33,16 @@ const getUserC = function(req, res) {
 }
 
 const updateUser = function(req, res) {
+    const updates = Object.keys(req.body)
+    const allowedUpdates = ['name', 'ine_id']
+    const isValidUpdate = updates.every((update) => allowedUpdates.includes(update))
+
+    if( !isValidUpdate ) {
+     return res.status(400).send({
+       error: 'Invalid update, only allowed to update: ' + allowedUpdates
+     })
+    }
+
     User.findByIdAndUpdate(req.user._id, req.body).then(function(user) {
         if(!user){
             return res.status(404).send()

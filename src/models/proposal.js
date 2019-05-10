@@ -34,12 +34,14 @@ const proposalSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'User'
-    },
+    }
+    /*
     votedBy: {
         type: mongoose.Schema.Types.ObjectId,
         required: false,
         ref: 'User'
     }
+    */
 })
 
 const Proposal = mongoose.model('Proposal', proposalSchema)

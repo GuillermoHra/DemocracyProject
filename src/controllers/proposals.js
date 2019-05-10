@@ -6,8 +6,6 @@ const createProposal = function(req, res) {
         name: req.body.name, 
         category: req.body.category,
         description: req.body.description,
-        favor: req.body.favor,
-        against: req.body.against,
         date: req.body.date,
         createdBy: req.user._id
     })
@@ -50,7 +48,7 @@ const getProposalsByCategory = function(req, res) {
     })
 }
 
-const getProposalResults = function(req, res) {
+const getProposalResults = function(req, res) { // not used
     const _id = req.params.id
     Proposal.findById(_id).then(function(proposal){
         if(!proposal){
@@ -64,6 +62,15 @@ const getProposalResults = function(req, res) {
 
 const updateProposal = function(req, res) {
     const _id = req.params.id
+    const updates = Object.keys(req.body)
+    const allowedUpdates = ['name', 'category', 'description', 'date']
+    const isValidUpdate = updates.every((update) => allowedUpdates.includes(update))
+
+    if( !isValidUpdate ) {
+     return res.status(400).send({
+       error: 'Invalid update, only allowed to update: ' + allowedUpdates
+     })
+    }
     Proposal.findByIdAndUpdate(_id, req.body).then(function(proposal) {
         if(!proposal){
             return res.status(404).send()
@@ -86,12 +93,11 @@ const deleteProposal = function(req, res) {
     })  
 }
 
-const vote = function(req, res) {
+const vote = function(req, res) { // not used
     const _idProposal = req.params.id
 
     const updates = Object.keys(req.body)
     const allowedUpdates = ['decision']
-    // revisa que los updates enviados sean permitidos, que no envie una key que no permitimos
     const isValidUpdate = updates.every((update) => allowedUpdates.includes(update))
     if( !isValidUpdate ) {
      return res.status(400).send({
@@ -99,16 +105,10 @@ const vote = function(req, res) {
      })
     }
 
-    Proposal.findById(_idProposal).then(function(proposal){
-        if(!proposal){
-            return res.status(404).send()
-        }
-        if(proposal.decision != -1){
-            return res.status(400).send({
-                error: 'You have alredy voted, update your vote instead'
-            })
-        }else{
-            Proposal.findByIdAndUpdate(_idProposal, req.body).then(function(proposal) {
+    User.findById(req.user._id).populate('proposalsVoted').exec(function(error, user){
+        const proposalsV = user.proposalsVoted
+        if(proposalsV.length == 0){
+            Proposal.findById(_idProposal).then(function(proposal) {
                 if(!proposal){
                     return res.status(404).send()
                 }
@@ -121,6 +121,7 @@ const vote = function(req, res) {
                 }
                 // save votedBy
                 proposal.votedBy = req.user._id
+
                 proposal.save().then(function() {
                     return res.send(proposal)
                 }).catch(function(error) {
@@ -129,18 +130,46 @@ const vote = function(req, res) {
             }).catch(function(error) {
                 return res.status(500).send(error)
             })
+        } else{
+            for(let i=0; i<user.proposalsVoted.length; i++){
+                if(user.proposalsVoted[i]._id == _idProposal){
+                    return res.status(400).send({
+                        error: 'You have alredy voted for this proposal, update your vote instead'
+                    })
+                }
+            }
+            Proposal.findById(_idProposal).then(function(proposal) {
+                if(!proposal){
+                    return res.status(404).send()
+                }
+                if(req.body.decision == 1) {
+                    proposal.favor = proposal.favor + 1
+                    proposal.decision = 1
+                } else {
+                    proposal.against = proposal.against + 1
+                    proposal.decision = 0
+                }
+                // save votedBy
+                proposal.votedBy = req.user._id
+                
+                proposal.save().then(function() {
+                    return res.send(proposal)
+                }).catch(function(error) {
+                    return res.status(400).send(error)
+                })
+                
+            }).catch(function(error) {
+                return res.status(500).send(error)
+            })
         }
-    }).catch(function(error){
-        return res.status(500).send(error)
     })
 }
 
-const updateVote = function(req, res) {
+const updateVote = function(req, res) { // not used
     const _idProposal = req.params.id
 
     const updates = Object.keys(req.body)
     const allowedUpdates = ['decision']
-    // revisa que los updates enviados sean permitidos, que no envie una key que no permitimos
     const isValidUpdate = updates.every((update) => allowedUpdates.includes(update))
     if( !isValidUpdate ) {
      return res.status(400).send({
@@ -149,9 +178,14 @@ const updateVote = function(req, res) {
     }
 
     Proposal.findById(_idProposal).then(function(proposal){
+
+
         if(!proposal){
             return res.status(404).send()
         }
+
+
+
         if(proposal.decision == -1){
             return res.status(400).send({
                 error: 'You have to vote first'
@@ -185,6 +219,8 @@ const updateVote = function(req, res) {
                 return res.status(500).send(error)
             })
         }
+
+
     }).catch(function(error){
         return res.status(500).send(error)
     })

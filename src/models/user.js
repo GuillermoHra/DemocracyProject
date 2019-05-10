@@ -54,10 +54,11 @@ userSchema.virtual('proposalsCreated', {
 })
 
 userSchema.virtual('proposalsVoted', {
-  ref: 'Proposal',
+  ref: 'Vote',
   localField: '_id',
   foreignField: 'votedBy'
 })
+
 
 userSchema.methods.toJSON = function() {
     const user = this
@@ -79,10 +80,10 @@ userSchema.statics.findByCredentials = function(email, password) {
           if(match) {
             return resolve(user)
           } else {
-            return reject('Wrong password!')
+            return reject('Wrong password')
           }
         }).catch( function(error) {
-          return reject('Wrong password!')
+          return reject('Wrong password')
         })
       })
     })
