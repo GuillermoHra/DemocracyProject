@@ -10,17 +10,17 @@ const createProposal = function(req, res) {
         createdBy: req.user._id
     })
     proposal.save().then(function() {
-        return res.send(proposal)
+        return res.send({proposal, success: 1})
     }).catch(function(error) {
-        return res.status(400).send(error)
+        return res.status(400).send({error: error, success: 0})
     })
 }
 
 const getProposals = function(req, res) { 
     Proposal.find({}).then(function(proposals) {
-        res.send(proposals)
+        res.send({proposals, success: 1})
       }).catch(function(error){
-        res.status(500).send(error)
+        res.status(500).send({error: error, success: 0})
     })
 }
 
@@ -28,11 +28,11 @@ const getProposalById = function(req, res) {
     const _idProposal = req.params.id
     Proposal.findOne({_id: _idProposal}).then(function(proposal) {
         if(!proposal){
-            return res.status(404).send()
+            return res.status(404).send({success: 0})
         }
-        return res.send(proposal)
+        return res.send({proposal, success: 1})
     }).catch(function(error) {
-        return res.status(500).send(error)
+        return res.status(500).send({error: error, success: 0})
     })
 }
 
@@ -40,11 +40,11 @@ const getProposalsByCategory = function(req, res) {
     const _category = req.params.category
     Proposal.find({category: _category}).then(function(proposal) {
         if(!proposal){
-            return res.status(404).send()
+            return res.status(404).send({success: 0})
         }
-        return res.send(proposal)
+        return res.send({proposal, success: 1})
     }).catch(function(error) {
-        return res.status(500).send(error)
+        return res.status(500).send({error:error, success: 0})
     })
 }
 
@@ -56,16 +56,17 @@ const updateProposal = function(req, res) {
 
     if( !isValidUpdate ) {
      return res.status(400).send({
-       error: 'Invalid update, only allowed to update: ' + allowedUpdates
+       error: 'Invalid update, only allowed to update: ' + allowedUpdates,
+       success: 0
      })
     }
     Proposal.findByIdAndUpdate(_id, req.body).then(function(proposal) {
         if(!proposal){
-            return res.status(404).send()
+            return res.status(404).send({success: 0})
         }
-        return res.send(proposal)
+        return res.send({proposal, success: 1})
     }).catch(function(error) {
-        return res.status(500).send(error)
+        return res.status(500).send({error:error, success: 0})
     })
 }
 
@@ -73,11 +74,11 @@ const deleteProposal = function(req, res) {
     const _id = req.params.id
     Proposal.findByIdAndDelete(_id, req.body).then(function(proposal) {
         if(!proposal){
-            return res.status(404).send()
+            return res.status(404).send({success: 0})
         }
-        return res.send(proposal)
+        return res.send({proposal, success: 1})
     }).catch(function(error) {
-        return res.status(500).send(error)
+        return res.status(500).send({error: error, success: 0})
     })  
 }
 // ----------------------------------------------------------------------------------

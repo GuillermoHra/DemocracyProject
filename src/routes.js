@@ -30,7 +30,8 @@ router.get('/proposalResults/:id', auth, votes.getProposalResults) // legislator
 
 router.get('*', function(req, res) {
     res.send({
-      error: 'This route does not exist, try /users or /proposals or check the documentation'
+      error: 'This route does not exist, try /users or /proposals or check the documentation',
+      success: 0
     })
 })
   

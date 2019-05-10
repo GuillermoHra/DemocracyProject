@@ -16,13 +16,13 @@ const createVote = function(req, res) {
         function (err, doc) { 
             if (err) {
                 // handle error
-                return res.send("You already voted for this proposal, update your vote instead")
+                return res.send({error: "You already voted for this proposal, update your vote instead", success: 0})
             } else {
                 // handle document
                 doc.save().then(function() {
-                    return res.send(doc)
+                    return res.send({doc, success: 1})
                 }).catch(function(err) {
-                    return res.status(400).send(err)
+                    return res.status(400).send({error: err, success: 0})
                 })
             }
         }
@@ -36,7 +36,8 @@ const updateVote = function(req, res) {
 
     if( !isValidUpdate ) {
      return res.status(400).send({
-       error: 'Invalid update, only allowed to update: ' + allowedUpdates
+       error: 'Invalid update, only allowed to update: ' + allowedUpdates,
+       success: 0
      })
     }
 
@@ -47,10 +48,10 @@ const updateVote = function(req, res) {
         function (err, doc) { 
             if (err) {
                 // handle error
-                return res.send(err)
+                return res.send({error: err, success: 0})
             } else {
                 // handle document
-                return res.send(doc)
+                return res.send({doc, success: 1})
             }
         }
     )
@@ -68,9 +69,9 @@ const getProposalResults = function(req, res) {
                 against++
             }
         }
-        res.send({proposalId: _idProposal, favor: favor, against: against})
+        res.send({proposalId: _idProposal, favor: favor, against: against, success: 1})
       }).catch(function(error){
-        res.status(500).send(error)
+        res.status(500).send({error: error, success: 0})
     })
 }
 
