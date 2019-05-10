@@ -10,10 +10,10 @@ const createVote = function(req, res) {
     })
 
     Vote.findOneAndUpdate(
-        {proposalId: _idProposal, userId: req.user._id}, // find a document with that filter
-        voteN, // document to insert when nothing was found
-        {upsert: true, new: true}, // options
-        function (err, doc) { // callback
+        {proposalId: _idProposal, userId: req.user._id}, 
+        voteN, 
+        {upsert: true, new: true}, 
+        function (err, doc) { 
             if (err) {
                 // handle error
                 return res.send("You already voted for this proposal, update your vote instead")
@@ -24,7 +24,6 @@ const createVote = function(req, res) {
                 }).catch(function(err) {
                     return res.status(400).send(err)
                 })
-                // increment count in proposal
             }
         }
     )
@@ -43,16 +42,15 @@ const updateVote = function(req, res) {
 
     const _idProposal = req.params.id
     Vote.findOneAndUpdate(
-        {proposalId: _idProposal, userId: req.user._id}, // find a document with that filter
+        {proposalId: _idProposal, userId: req.user._id}, 
         req.body,
-        function (err, doc) { // callback
+        function (err, doc) { 
             if (err) {
                 // handle error
                 return res.send(err)
             } else {
                 // handle document
                 return res.send(doc)
-                // change count in proposal
             }
         }
     )

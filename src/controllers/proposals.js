@@ -24,9 +24,9 @@ const getProposals = function(req, res) {
     })
 }
 
-const getProposal = function(req, res) { // not used
-    const _id = req.params.id
-    Proposal.findOne({_id, by: req.user._id}).then(function(proposal) {
+const getProposalById = function(req, res) {
+    const _idProposal = req.params.id
+    Proposal.findOne({_id: _idProposal}).then(function(proposal) {
         if(!proposal){
             return res.status(404).send()
         }
@@ -44,18 +44,6 @@ const getProposalsByCategory = function(req, res) {
         }
         return res.send(proposal)
     }).catch(function(error) {
-        return res.status(500).send(error)
-    })
-}
-
-const getProposalResults = function(req, res) { // not used
-    const _id = req.params.id
-    Proposal.findById(_id).then(function(proposal){
-        if(!proposal){
-            return res.status(404).send()
-        }
-        return res.send({favor: proposal.favor, against: proposal.against})
-    }).catch(function(error){
         return res.status(500).send(error)
     })
 }
@@ -91,6 +79,20 @@ const deleteProposal = function(req, res) {
     }).catch(function(error) {
         return res.status(500).send(error)
     })  
+}
+// ----------------------------------------------------------------------------------
+// ------------------------------ deprecated functions ------------------------------
+// ----------------------------------------------------------------------------------
+const getProposalResults = function(req, res) { // not used
+    const _id = req.params.id
+    Proposal.findById(_id).then(function(proposal){
+        if(!proposal){
+            return res.status(404).send()
+        }
+        return res.send({favor: proposal.favor, against: proposal.against})
+    }).catch(function(error){
+        return res.status(500).send(error)
+    })
 }
 
 const vote = function(req, res) { // not used
@@ -229,7 +231,7 @@ const updateVote = function(req, res) { // not used
 module.exports = {
     createProposal: createProposal,
     getProposals: getProposals,
-    getProposal: getProposal,
+    getProposalById: getProposalById,
     getProposalsByCategory: getProposalsByCategory,
     getProposalResults: getProposalResults,
     updateProposal: updateProposal,

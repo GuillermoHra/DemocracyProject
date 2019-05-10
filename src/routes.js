@@ -14,17 +14,16 @@ router.patch('/users', auth, users.updateUser) // legislator and citizen
 router.delete('/users', auth, users.deleteUser) // legislator and citizen
 router.post('/users/login', users.login) // legislator and citizen
 router.post('/users/logout', auth, users.logout) // legislator and citizen
-router.get('/proposalsByCitizen', auth, users.getProposalsByCitizen) // citizen
+router.get('/proposalsByCitizen', auth, users.getProposalsByCitizen) // citizen front: getProposalById and display info
 router.get('/proposalsByLegislator', auth, users.getProposalsByLegislator) // legislator
 
 router.post('/proposals', auth, proposals.createProposal) // legislator
 router.get('/proposals', auth, proposals.getProposals) // legislator and citizen
+router.get('/proposals/:id', auth, proposals.getProposalById) // legislator and citizen 
 router.get('/proposalsByCategory/:category', auth, proposals.getProposalsByCategory) // legislator and citizen
 router.patch('/proposals/:id', auth, proposals.updateProposal) // legislator
 router.delete('/proposals/:id', auth, proposals.deleteProposal) // legislator
 
-//router.patch('/vote/:id', auth, proposals.vote) // citizen
-//router.patch('/updateVote/:id', auth, proposals.updateVote) // citizen
 router.post('/vote/:id', auth, votes.createVote) // citizen
 router.patch('/updateVote/:id', auth, votes.updateVote) // citizen
 router.get('/proposalResults/:id', auth, votes.getProposalResults) // legislator and citizen

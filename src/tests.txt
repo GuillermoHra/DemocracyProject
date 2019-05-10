@@ -1,0 +1,115 @@
+POST: http://localhost:3000/users
+
+{
+    "userType": "legislator",
+    "name": "Samuel Garcia",
+    "ine_id": "123456",
+    "email": "samuel@gmail.com",
+    "password": "amoamiperro"
+}
+{
+    "userType": "legislator",
+    "name": "Indira Kempis",
+    "ine_id": "123456",
+    "email": "indira@gmail.com",
+    "password": "amoamiperro"
+}
+{
+    "userType": "legislator",
+    "name": "Daniel Gomez",
+    "ine_id": "123456",
+    "email": "damiel@gmail.com",
+    "password": "amoamiperro"
+}
+{
+    "userType": "legislator",
+    "name": "Andres Manuel L.O",
+    "ine_id": "123456",
+    "email": "amlo@gmail.com",
+    "password": "amoamiperro"
+}
+
+{
+    "userType": "citizen",
+    "name": "Guillermo Herrera",
+    "ine_id": "123456",
+    "email": "guillermo@gmail.com",
+    "password": "amoamiperro"
+}
+{
+    "userType": "citizen",
+    "name": "Antonio Aleman",
+    "ine_id": "123456",
+    "email": "antonio@gmail.com",
+    "password": "amoamiperro"
+}
+{
+    "userType": "citizen",
+    "name": "Camila Zamarripa",
+    "ine_id": "123456",
+    "email": "camila@gmail.com",
+    "password": "amoamiperro"
+}
+{
+    "userType": "citizen",
+    "name": "Francisco Valencia",
+    "ine_id": "123456",
+    "email": "francisco@gmail.com",
+    "password": "amoamiperro"
+}
+
+POST: http://localhost:3000/proposals
+{
+ "name": "Adios al gasolinazo",
+ "category": "Transporte",
+ "description": "reducción del costo de la gasolina",
+ "date": "05-30-2019"
+}
+{
+ "name": "Tarifazo transporte público en N.L",
+ "category": "Transporte",
+ "description": "evitar el aumento a la tarifa del transporte público en N.L",
+ "date": "05-30-2019"
+}
+
+{
+ "name": "Reforma de salud",
+ "category": "Salud",
+ "description": "reforma de salud",
+ "date": "05-30-2019"
+}
+{
+ "name": "Reforma educacion",
+ "category": "Educacion",
+ "description": "reforma educacion",
+ "date": "05-30-2019"
+}
+
+{
+ "name": "Industria 4.0 en N.L",
+ "category": "Emprendimiento",
+ "description": "aumento de presupuesto para la industria 4.0",
+ "date": "05-30-2019"
+}
+{
+ "name": "Regreso de INADEM",
+ "category": "Emprendimiento",
+ "description": "restauración del INADEM",
+ "date": "05-30-2019"
+}
+
+{
+ "name": "Aeropuerto Santa Lucia",
+ "category": "Transporte",
+ "description": "reporte de viabilidad del aeropuerto",
+ "date": "05-30-2019"
+}
+{
+ "name": "Tren maya",
+ "category": "Transporte",
+ "description": "reporte de viabilidad del tren maya",
+ "date": "05-30-2019"
+}
+
+
+

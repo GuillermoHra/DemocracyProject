@@ -1,6 +1,7 @@
 // TODO:
-// 1 - send only relevant information
+// 1 - send only relevant information in response objects
 // 2 - personalize error messages
+// 3 - validate req.body in posts with validator
 
 const express = require('express')
 require('./db/mongoose')

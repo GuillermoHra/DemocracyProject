@@ -14,18 +14,6 @@ const proposalSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    favor: {
-        type: Number,
-        default: 0
-    },
-    against: {
-        type: Number,
-        default: 0
-    },
-    decision: {
-        type: Number,
-        default: -1
-    },
     date: {
         type: Date, // month-day-year
         required: true
@@ -35,13 +23,6 @@ const proposalSchema = new mongoose.Schema({
         required: true,
         ref: 'User'
     }
-    /*
-    votedBy: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: false,
-        ref: 'User'
-    }
-    */
 })
 
 const Proposal = mongoose.model('Proposal', proposalSchema)
