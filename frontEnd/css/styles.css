@@ -61,6 +61,8 @@ input[type=button], input[type=submit], input[type=reset]  {
     background-color: #4CAF50;
     overflow: hidden;
     font-family: 'Roboto', sans-serif;
+    margin-bottom: 1%;
+    block-size: 2cm;
 }
 
 /* Style the links inside the navigation bar */
@@ -89,5 +91,35 @@ input[type=button], input[type=submit], input[type=reset]  {
     display: block;
     float: right;
     padding-right: 2.5px;
-    padding-top: 2.5px
+    padding-top: 2.5px;
+}
+
+.proposal-container {
+    font-family: 'Roboto', sans-serif;
+}
+
+.proposal-title {
+    margin-top: 0px;
+    background-color: #4CAF50;
+    padding-left: 1%
+}
+
+.proposal-description {
+    color: black;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.boxed {
+    border: 1px solid green;
+    color: white;
+    margin-bottom: 2%;
+}
+
+.vote_icon {
+    text-align: center;
+}
+
+.home_nav {
+    vertical-align: text-top;
 }
