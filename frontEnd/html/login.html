@@ -4,15 +4,24 @@
 <head>
     <title>Login</title>
     <link rel="stylesheet" type="text/css" href="../css/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../js/configuration/jquerysession.js"></script>
 </head>
 
-<div id="formContent">
+<body>
+    <div class="form-container">
+        <h2>Bienvenido</h2>
+        <div id="formContent">
+            <!-- Login Form -->
+            <form id="login">
+                <input type="text" class="loginData" id="loginUser" name="login" placeholder="Email">
+                <input type="password" class="loginData" id="loginPassword" name="login" placeholder="password">
+                <input id="button_login" type="button" value="Log In">
+            </form>
+            <a href="register.html">Registro</a>    
+        </div>
+    </div>
 
-    <!-- Login Form -->
-    <form id="loginForm">
-        <input type="text" class="loginData" id="loginUser" name="login" placeholder="login">
-        <input type="password" class="loginData" id="loginPassword" name="login" placeholder="password">
-        <input type="submit" value="Log In">
-    </form>
-
-</div>
+    <script src="../js/login.js"></script>
+    <script src="../js/configuration/universal.js"></script>
+</body>
