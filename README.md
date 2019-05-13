@@ -6,4 +6,4 @@ The legislators are able to add proposals, while the citizens are able to vote f
 Both of them have access to the proposals and the results of the voting.  
 
 Under the branch: **guillermo**, you can find the source code used for the back-end. It was deployed on heroku: https://democracy-project.herokuapp.com/  
-Under the branch: **antonio**, you can find the source code used for the front-end. I was deployed on github pages: https://antonaldinho.github.io/democracyproject/html/login.html  
+Under the branch: **antonio**, you can find the source code used for the front-end. I was deployed on github pages. This a protype that you can use for testing the current version of the system: https://antonaldinho.github.io/democracyproject/html/login.html  
