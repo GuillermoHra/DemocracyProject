@@ -1,4 +1,4 @@
-const base = 'https://antonaldinho.github.io/finalproject/html/';
+const base = 'http://127.0.0.1:5500/frontEnd/html/';
 
 $( document ).ready(function() {
     $("#button_login").click(function(){
@@ -27,6 +27,9 @@ $( document ).ready(function() {
             else {
                 alert("Usuario y/o contraseña no válidos");
             }
-        });
+        }).fail(function(data) {
+            console.log(data.responseJSON);
+            alert(data.responseJSON.error);
+        })
     })
 });

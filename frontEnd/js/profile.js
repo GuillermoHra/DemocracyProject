@@ -1,4 +1,4 @@
-const base = 'https://antonaldinho.github.io/finalproject/html/';
+const base = 'http://127.0.0.1:5500/frontEnd/html/';
 const userData = JSON.parse($.session.get("userData"));
 const token = $.session.get("token");
 
@@ -232,5 +232,11 @@ $( document ).ready(function() {
     logout();
     if(userData.userType == "citizen") {
         $("#history-created").hide();
+    }
+    if(userData.userType == "legislator") {
+        $("#history-votes").hide();
+    }
+    if(userData.userType == "legislator") {
+        $("#addProposalButton").show();
     }
 })

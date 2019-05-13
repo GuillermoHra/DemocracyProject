@@ -12,3 +12,4 @@ urls.logout = urls.base + '/users/logout';
 urls.postProposal = urls.base + '/proposals';
 urls.updateProposal = urls.base + '/proposals/';
 urls.signup = urls.base + '/users'; //POST
+urls.getProposalResults = urls.base + '/proposalResults/';
