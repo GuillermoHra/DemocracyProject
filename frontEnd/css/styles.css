@@ -40,6 +40,22 @@
     font-family: 'Roboto', sans-serif;
 }
 
+#button_logout {
+    font-family: 'Roboto', sans-serif;
+    background-color: rgb(219, 45, 45);
+    border: none;
+    color: white;
+    padding: 15px 80px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 13px;
+    box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+    border-radius: 5px 5px 5px 5px;
+    margin: 5px 20px 40px 20px;
+}
+
 input[type=button], input[type=submit], input[type=reset]  {
     font-family: 'Roboto', sans-serif;
     background-color: #4CAF50;
@@ -159,6 +175,7 @@ input[type=button], input[type=submit], input[type=reset]  {
 	border-radius:50px;
 	text-align:center;
     box-shadow: 2px 2px 3px #999;
+    display: none;
 }
 
 .my-float{
@@ -192,4 +209,12 @@ input[type=button], input[type=submit], input[type=reset]  {
 .input-description {
     width: 500px;
     height: 50px;
+}
+
+.fa-edit {
+    color: #0d0d0d;
+}
+
+.fa-trash-alt {
+    color: black;
 }

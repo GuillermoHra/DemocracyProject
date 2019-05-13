@@ -4,6 +4,8 @@
         <title>Propuestas</title>
         <link rel="stylesheet" type="text/css" href="../css/styles.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="../js/configuration/jquerysession.js"></script>
     </head>
 </html>
 
@@ -18,53 +20,21 @@
     </div>
 
     <div class="proposal-container">
-        <div  class="proposal-who boxed-inner">
+        <!-- <div  class="proposal-who boxed-inner">
             <h3 class="proposal-title">Lmaoo</h3>
+            <h4 id="proposal-category" class="proposal-description">Categoría:</h4>
             <p class="proposal-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             <div class="vote_icons">
-                <img src="../images/icons/aceptar.png" alt="accept" height="43">
-                <img src="../images/icons/reject.png" alt="reject" height="43">
+                <img class="vote-button" src="../images/icons/aceptar.png" data-proposal_id="" data-desicion="1" alt="accept" height="43">
+                <img class="vote-button" src="../images/icons/reject.png" data-proposal_id="" data-desicion="0" alt="reject" height="43">
             </div>
-        </div>
-
-        <div  class="proposal-who boxed-inner">
-            <h3 class="proposal-title">Lmaoo</h3>
-            <p class="proposal-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            <div class="vote_icons">
-                <img src="../images/icons/aceptar.png" alt="accept" height="43">
-                <img src="../images/icons/reject.png" alt="reject" height="43">
-            </div>
-        </div>
-
-        <div  class="proposal-who boxed-inner">
-            <h3 class="proposal-title">Lmaoo</h3>
-            <p class="proposal-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            <div class="vote_icons">
-                <img src="../images/icons/aceptar.png" alt="accept" height="43">
-                <img src="../images/icons/reject.png" alt="reject" height="43">
-            </div>
-        </div>
-
-        <div  class="proposal-who boxed-inner">
-            <h3 class="proposal-title">Lmaoo</h3>
-            <p class="proposal-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            <div class="vote_icons">
-                <img src="../images/icons/aceptar.png" alt="accept" height="43">
-                <img src="../images/icons/reject.png" alt="reject" height="43">
-            </div>
-        </div>
-
-        <div  class="proposal-who boxed-inner">
-            <h3 class="proposal-title">Lmaoo</h3>
-            <p class="proposal-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            <div class="vote_icons">
-                <img src="../images/icons/aceptar.png" alt="accept" height="43">
-                <img src="../images/icons/reject.png" alt="reject" height="43">
-            </div>
-        </div>
-
+        </div> -->
     </div>
-    <a href="addProposal.html" class="float">
+
+    <a id="addProposalButton" href="addProposal.html" class="float">
         <i class="fa fa-plus my-float"></i>
     </a>
+
+    <script src="../js/configuration/universal.js"></script>
+    <script src="../js/home.js"></script>
 </body>
